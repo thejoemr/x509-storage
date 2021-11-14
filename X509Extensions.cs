@@ -19,6 +19,10 @@ public static class X509Extensions
         {
             throw new ArgumentException($"'{nameof(path)}' no puede ser nulo ni estar vacío.", nameof(path));
         }
+        if (!File.Exists(path))
+        {
+            throw new NullReferenceException($"'{nameof(path)}' no se encontró el archivo especificado.");
+        }
 
         try
         {
