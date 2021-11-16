@@ -44,7 +44,7 @@ X509Storage x509Storage = X509Storage.Storage;
 ```
 x509Storage.Load(certInstalled, certPublicFile, certPrivateFile);
 ```
-## Usar los certificados caargados en la aplicación
+## Usar los certificados cargados en la aplicación
 > Ubicar el certificado por su nombre unico
 ```
 CertificateBase localCertificate = x509Storage.Certificates["localCert"];
@@ -75,5 +75,5 @@ bool isValidSignature = publicCertificateFile.VerifyData("CADENA DE DÓNDE SE GE
 ```
 var privateCertificateFile = (PrivateCertificate)x509Storage.Certificates["localCertPrivate"];
 string signature = privateCertificateFile.SignData("CADENA DE DÓNDE SE GENERARÁ UNA FIRMA");
-isValidSignature = privateCertificateFile.Public.VerifyData("CADENA DE DÓNDE SE GENERARÁ UNA FIRMA", "CADENA DE FIRMA ORIGINAL");
+bool isValidSignature = privateCertificateFile.Public.VerifyData("CADENA DE DÓNDE SE GENERARÁ UNA FIRMA", "CADENA DE FIRMA ORIGINAL");
 ```
