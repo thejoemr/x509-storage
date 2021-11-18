@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
+using x509_storage.Certificate;
 
 namespace x509_storage
 {
@@ -75,6 +76,33 @@ namespace x509_storage
             {
                 throw new Exception($"No se encontró un certificado válido: {ex.Message}");
             }
+        }
+
+        /// <summary>
+        /// Convierte un certificado base, a un certificado privado
+        /// </summary>
+        /// <param name="this"></param>
+        /// <returns></returns>
+        public static PrivateCertificate AsPrivate(this CertificateBase @this)
+        {
+            if (@this.Certificate.HasPrivateKey)
+            {
+                return new PrivateCertificate(@this.Info, @this.Certificate);
+            }
+            else
+            {
+                throw new Exception($"El certificado '{@this.Info.Name}', no es privado.");
+            }
+        }
+
+        /// <summary>
+        /// Convierte un certificado base, a un certificado público
+        /// </summary>
+        /// <param name="this"></param>
+        /// <returns></returns>
+        public static PublicCertificate AsPublic(this CertificateBase @this)
+        {
+            return new PublicCertificate(@this.Info, @this.Certificate);
         }
     }
 }

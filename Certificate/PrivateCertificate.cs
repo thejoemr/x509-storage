@@ -16,7 +16,7 @@ namespace x509_storage.Certificate
         /// <param name="info">Información del certificadó que se cargó</param>
         /// <param name="certificate">Certificado adjunto</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public PrivateCertificate(CertificateInfo info, X509Certificate2 certificate) : base(info, certificate, isPrivate: true)
+        public PrivateCertificate(CertificateInfo info, X509Certificate2 certificate) : base(info, certificate)
         {
             Public = new PublicCertificate(info, certificate);
         }

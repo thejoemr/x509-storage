@@ -6,20 +6,19 @@ namespace x509_storage.Certificate
     /// <summary>
     /// Define la información general de un certificado
     /// </summary>
-    public abstract class CertificateBase
+    public class CertificateBase
     {
         /// <summary>
         /// Crea un certificado general, sin funcionalidad
         /// </summary>
         /// <param name="info">Información del certificadó que se cargó</param>
         /// <param name="certificate">Certificado adjunto</param>
-        /// <param name="isPrivate">Especifica si el certificado es privado</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public CertificateBase(CertificateInfo info, X509Certificate2 certificate, bool isPrivate)
+        public CertificateBase(CertificateInfo info, X509Certificate2 certificate)
         {
             Info = info ?? throw new ArgumentNullException(nameof(info));
             Certificate = certificate ?? throw new ArgumentNullException(nameof(certificate));
-            IsPrivate = isPrivate;
+            IsPrivate = certificate.HasPrivateKey;
         }
 
         /// <summary>

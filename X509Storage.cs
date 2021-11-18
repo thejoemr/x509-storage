@@ -66,14 +66,7 @@ namespace x509_storage
                             certificate = X509Extensions.Get(info.CF, info.CP);
                         }
 
-                        if (certificate.HasPrivateKey)
-                        {
-                            certificates.Add(info.Name, new PrivateCertificate(info, certificate));
-                        }
-                        else
-                        {
-                            certificates.Add(info.Name, new PublicCertificate(info, certificate));
-                        }
+                        certificates.Add(info.Name, new CertificateBase(info, certificate));
                     }
                 }
             }
