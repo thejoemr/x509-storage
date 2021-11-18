@@ -85,6 +85,11 @@ namespace x509_storage
         /// <returns></returns>
         public static PrivateCertificate AsPrivate(this CertificateBase @this)
         {
+            if (@this is null)
+            {
+                throw new ArgumentNullException(nameof(@this));
+            }
+
             if (@this.Certificate.HasPrivateKey)
             {
                 return new PrivateCertificate(@this.Info, @this.Certificate);
@@ -102,6 +107,11 @@ namespace x509_storage
         /// <returns></returns>
         public static PublicCertificate AsPublic(this CertificateBase @this)
         {
+            if (@this is null)
+            {
+                throw new ArgumentNullException(nameof(@this));
+            }
+
             return new PublicCertificate(@this.Info, @this.Certificate);
         }
     }
